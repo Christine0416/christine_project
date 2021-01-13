@@ -1,0 +1,19 @@
+#!/bin/bash
+#SBATCH -n 16 
+#SBATCH -p all
+#SBATCH -t 100:00:00
+#SBATCH --job-name=covid
+#SBATCH -o %j.out
+#SBATCH --mem=50GB
+
+set DIR = %cd%/covid_sim_working
+
+###limit stacksize unlimited
+
+module purge
+module load openmpi
+
+SlurmEnvToHostfile
+
+./batch_calibrate.sh >& run_log_batch_calib
+ 
